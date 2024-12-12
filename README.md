@@ -1,88 +1,112 @@
-# MVP de Ciência de Dados
+# MVP - Previsão de Preços de Casas (Boston Housing Dataset)
 
-## Descrição do Projeto
+Este projeto tem como objetivo a construção de um modelo de Ciência de Dados para prever o preço das casas com base em atributos como o número de quartos, área, localização, entre outros. O dataset utilizado é o **Boston Housing Dataset**, que contém informações sobre diferentes características das casas em Boston, EUA, e seus respectivos preços.
 
-Este projeto tem como objetivo principal prever o preço de casas com base em suas características utilizando técnicas de machine learning. O projeto foi desenvolvido como um MVP (Mínimo Produto Viável) para demonstrar a aplicação de modelos de regressão em problemas do mundo real.
+## Objetivo
 
-## Etapas do Projeto
+O objetivo deste projeto é construir um modelo de regressão para prever os preços das casas com base em características como:
 
-1. **Importação das Bibliotecas:**
-   - Foram utilizadas bibliotecas como `pandas`, `numpy`, `matplotlib`, `seaborn` e ferramentas da biblioteca `scikit-learn` para manipulação de dados, visualização e modelagem.
+- Número de quartos
+- Tamanho da casa
+- Localização
+- Proximidade de áreas de recreação e escolas
+- Nível de poluição
+- E outros fatores
 
-2. **Definição do Problema:**
-   - O problema consiste em prever o preço de casas com base em variáveis explicativas como número de quartos, tamanho do lote, entre outras.
+O modelo construído pode ser utilizado para estimar o valor de casas em Boston, ajudando em decisões relacionadas à compra e venda de imóveis.
 
-3. **Carregamento dos Dados:**
-   - O dataset utilizado foi obtido a partir de um repositório público no GitHub. [Dataset](https://raw.githubusercontent.com/m4cneto/puc_mvp_12_2024/refs/heads/main/boston.csv).
+## Descrição do Problema
 
-4. **Análise Exploratória dos Dados:**
-   - Análise inicial para compreender a estrutura dos dados e verificar valores ausentes ou inconsistências.
-   - Estatísticas descritivas foram geradas para entender as distribuições e possíveis outliers.
+### Problema
 
-5. **Preparação dos Dados:**
-   - Remoção de valores ausentes e normalização das variáveis para padronizar a escala.
-   - Separação das variáveis entre conjuntos de treino e teste.
+A previsão precisa dos preços de casas é importante para diversos setores, como compra e venda de imóveis, análise de mercado e planejamento urbano. O modelo desenvolvido visa prever o preço de casas com base em características específicas.
 
-6. **Seleção de Features:**
-   - Foram selecionadas as 10 melhores features usando o método `SelectKBest` com base na correlação estatística.
+### Hipóteses
 
-7. **Modelagem:**
-   - Dois modelos foram treinados: Regressão Linear (baseline) e Random Forest.
-   - Ambos os modelos foram avaliados para medir sua performance inicial.
+1. A relação entre as características das casas e seus preços pode ser modelada utilizando técnicas de regressão.
+2. Algumas variáveis, como o número de quartos e o nível de poluição, têm um impacto significativo no preço das casas.
 
-8. **Otimização de Hiperparâmetros:**
-   - Foi realizada uma busca em grade para ajustar os hiperparâmetros do Random Forest, visando melhorar seu desempenho.
+### Restrições
 
-9. **Avaliação dos Modelos:**
-   - Métricas utilizadas: MSE (Mean Squared Error) e R² (coeficiente de determinação).
-   - Comparou-se o desempenho dos modelos antes e depois da otimização.
+- O dataset utilizado é um conjunto histórico de dados de casas em Boston, que pode não refletir as condições atuais do mercado imobiliário.
+- O modelo pode ter limitações ao generalizar para outras regiões ou cidades.
 
-10. **Conclusão:**
-    - Foi apresentado o desempenho final dos modelos e discutidos os resultados obtidos.
+### Dataset
 
-## Requisitos para Execução
+O dataset utilizado é o **Boston Housing Dataset**, que contém 506 amostras e 13 variáveis preditoras. A variável alvo (y) é o preço das casas (`MEDV`).
 
-- Python 3.7 ou superior.
-- Bibliotecas necessárias:
-  - `pandas`
-  - `numpy`
-  - `matplotlib`
-  - `seaborn`
-  - `scikit-learn`
+Abaixo estão as variáveis presentes no dataset:
 
-Para instalar as dependências, execute:
-```bash
-pip install -r requirements.txt
-```
+- **CRIM**: Taxa de criminalidade per capita
+- **ZN**: Proporção de áreas residenciais com grande parcela de terrenos para construção
+- **INDUS**: Proporção de acres de negócios não varejistas por cidade
+- **CHAS**: Variável indicadora de proximidade ao rio Charles (1 se a casa está ao lado do rio, 0 caso contrário)
+- **NOX**: Concentração de óxidos de nitrogênio
+- **RM**: Número médio de quartos por residência
+- **AGE**: Proporção de casas construídas antes de 1940
+- **DIS**: Distância ponderada para centros de emprego em Boston
+- **RAD**: Índice de acessibilidade à rodovias radiais
+- **TAX**: Taxa sobre propriedades de valor mais alto
+- **PTRATIO**: Razão aluno-professor
+- **B**: Proporção de moradores de origem africana
+- **LSTAT**: Percentual de pessoas de classe baixa na população
 
-## Como Executar
+## Preparação de Dados
 
-1. Clone este repositório:
-   ```bash
-   git clone https://github.com/seu_usuario/mvp_ciencia_dados.git
-   ```
+- O dataset foi carregado e tratado para garantir que não houvesse valores nulos.
+- As variáveis foram normalizadas para garantir que todas estivessem na mesma escala.
+- Utilizou-se **SelectKBest** para realizar a seleção das 10 melhores variáveis preditoras com base na correlação estatística.
 
-2. Navegue até o diretório do projeto:
-   ```bash
-   cd mvp_ciencia_dados
-   ```
+## Modelagem e Treinamento
 
-3. Abra o notebook no Jupyter ou Google Colab e execute as células sequencialmente.
+Foram treinados dois modelos de regressão para prever o preço das casas:
 
-## Estrutura do Projeto
+1. **Regressão Linear**: Um modelo simples, de fácil interpretação, que serve como baseline.
+2. **Random Forest**: Um modelo mais complexo, capaz de capturar relações não-lineares entre as variáveis, e por isso, mais robusto.
 
-- `notebook/`: Contém o notebook principal do projeto.
-- `data/`: Diretório para armazenar o dataset utilizado.
-- `README.md`: Documento descritivo do projeto.
-- `requirements.txt`: Lista de dependências necessárias.
+### Resultados dos Modelos
 
-## Resultados
+- **Regressão Linear**:
+  - **MSE**: 27.22
+  - **R²**: 0.63
+  - A regressão linear mostrou-se simples, mas com limitações para capturar relações complexas nos dados.
+  
+- **Random Forest**:
+  - **MSE**: 9.62
+  - **R²**: 0.87
+  - O modelo Random Forest apresentou um desempenho superior, com previsões mais precisas e robustas.
 
-- A Regressão Linear apresentou MSE e R² moderados, sendo utilizada como baseline.
-- O Random Forest superou a Regressão Linear e mostrou melhores resultados após a otimização.
-- Detalhes completos estão documentados no notebook.
+### Gráficos
 
-## Licença
+- **Valores Reais vs Preditos**:
+  - O gráfico mostra a comparação entre os valores reais dos preços das casas e as previsões feitas pelos modelos de Regressão Linear e Random Forest.
+  
+- **Mapa de Correlação**:
+  - O gráfico de correlação ajuda a entender como as variáveis do dataset se relacionam entre si.
 
-Este projeto é licenciado sob a MIT License - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+## Conclusão
 
+- O modelo **Random Forest** se mostrou o mais eficaz para prever os preços das casas, com um desempenho significativamente melhor que o modelo de **Regressão Linear**.
+- O modelo é capaz de capturar padrões complexos nos dados e fornecer estimativas mais precisas para os preços das casas.
+- Variáveis como o **número de quartos** e o **nível de poluição** têm um impacto importante no preço das casas.
+
+
+## Bibliotecas Utilizadas
+
+- `warnings`
+- `pandas`
+- `numpy`
+- `matplotlib.pyplot`
+- `seaborn`
+- `sklearn.model_selection.train_test_split`
+- `sklearn.model_selection.cross_val_score`
+- `sklearn.preprocessing.StandardScaler`
+- `sklearn.feature_selection.SelectKBest`
+- `sklearn.ensemble.RandomForestRegressor`
+- `sklearn.linear_model.LinearRegression`
+- `sklearn.metrics.mean_squared_error`
+- `sklearn.metrics.r2_score`
+- `sklearn.model_selection.GridSearchCV`
+
+
+   
